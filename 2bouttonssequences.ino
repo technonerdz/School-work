@@ -8,7 +8,7 @@ void setup()
 {
  pinMode(buttonPin1, INPUT); // C'est une pin de boutton donc c'est un input
  pinMode(buttonPin2, INPUT); // C'est une pin de boutton donc c'est un input
- pinMode(ledPin1, OUTPUT); // C'est une pin de les donc c'est un output
+ pinMode(ledPin1, OUTPUT); // C'est une pin de led donc c'est un output
  delay(0); 
 }
 
