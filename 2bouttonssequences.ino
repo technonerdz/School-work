@@ -6,16 +6,16 @@ int ledPin1 = 13; // Défini que la led est sur la pin 13
 
 void setup() // initialisation
 {
- pinMode(buttonPin1, INPUT); // C'est une pin de boutton donc c'est un input
- pinMode(buttonPin2, INPUT); // C'est une pin de boutton donc c'est un input
+ pinMode(buttonPin1, INPUT); // C'est une pin de bouton donc c'est un input
+ pinMode(buttonPin2, INPUT); // C'est une pin de bouton donc c'est un input
  pinMode(ledPin1, OUTPUT); // C'est une pin de led donc c'est un output
  delay(0); 
 }
 
 
 void loop(){ // Boucle infini
- int buttonState1 = digitalRead(buttonPin1); // écris l'état des bouttons dans des variables
- int buttonState2 = digitalRead(buttonPin2); // écris l'état des bouttons dans des variables
+ int buttonState1 = digitalRead(buttonPin1); // écris l'état des boutons dans des variables
+ int buttonState2 = digitalRead(buttonPin2); // écris l'état des boutons dans des variables
  
  if (buttonState1 == HIGH){ // Si on appuie sur le boutton 1
    digitalWrite(ledPin1, HIGH); // allume la led
