@@ -9,7 +9,6 @@ void setup() // Initialisation
  pinMode(buttonPin1, INPUT); // C'est une pin de bouton : input
  pinMode(buttonPin2, INPUT); // C'est une pin de bouton : input
  pinMode(ledPin1, OUTPUT); // C'est une pin de led donc c'est un output
- delay(0); 
 }
 
 
