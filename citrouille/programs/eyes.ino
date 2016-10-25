@@ -1,12 +1,11 @@
 // based on http://yaab-arduino.blogspot.ca/2015/05/beating-heart-with-arduino-and-max7219.html
 
-int ANIMDELAY = 100;  // animation delay, deafault value is 100
 int INTENSITYMIN = 0; // minimum brightness, valid range [0,15]
 int INTENSITYMAX = 8; // maximum brightness, valid range [0,15]
 
-int DIN_PIN = 2;      // data in pin
-int CS_PIN = 3;       // load (CS) pin
-int CLK_PIN = 4;      // clock pin
+int DIN_PIN = 2;      // data in pin    -|
+int CS_PIN = 3;       // load (CS) pin   |-- Défini les pins où les yeux sont connectés
+int CLK_PIN = 4;      // clock pin      -|
 
 // MAX7219 registers
 byte MAXREG_DECODEMODE = 0x09;
@@ -15,7 +14,7 @@ byte MAXREG_SCANLIMIT  = 0x0b;
 byte MAXREG_SHUTDOWN   = 0x0c;
 byte MAXREG_DISPTEST   = 0x0f;
 
-const unsigned char eyes1[] =
+const unsigned char eyes1[] = //Cette variable s'occupe de la position 1 des yeux
 {
   B00111100,
   B01111110,
@@ -27,7 +26,7 @@ const unsigned char eyes1[] =
   B00111100,
 };
 
-const unsigned char eyes2[] =
+const unsigned char eyes2[] = //Cette variable s'occupe de la position 2 des yeux
 {
   B00111100,
   B01111110,
@@ -40,7 +39,7 @@ const unsigned char eyes2[] =
 };
 
 
-const unsigned char eyes3[] =
+const unsigned char eyes3[] = //Cette variable s'occupe de la position 3 des yeux
 {
   B00111100,
   B01111110,
@@ -51,7 +50,7 @@ const unsigned char eyes3[] =
   B01111110,
   B00111100,
 };
-const unsigned char eyes4[] =
+const unsigned char eyes4[] = //Cette variable s'occupe de la position 4 des yeux
 {
   B00111100,
   B01111110,
@@ -67,9 +66,9 @@ const unsigned char eyes4[] =
 
 void setup ()
 {
-  pinMode(DIN_PIN, OUTPUT);
-  pinMode(CLK_PIN, OUTPUT);
-  pinMode(CS_PIN, OUTPUT);
+  pinMode(DIN_PIN, OUTPUT); //  -|
+  pinMode(CLK_PIN, OUTPUT); //   |-- Défini les pins des yeux comme des outputs
+  pinMode(CS_PIN, OUTPUT);  //  -|
 
   // initialization of the MAX7219
   setRegistry(MAXREG_SCANLIMIT, 0x07);
@@ -78,7 +77,7 @@ void setup ()
   setRegistry(MAXREG_DISPTEST, 0x00);    // no display test
   setRegistry(MAXREG_INTENSITY, 0x0f & INTENSITYMIN);
 
-  // draw eyes1
+  // dessine eyes1
   setRegistry(1, eyes1[0]);
   setRegistry(2, eyes1[1]);
   setRegistry(3, eyes1[2]);
@@ -94,7 +93,7 @@ void setup ()
 void loop ()
 {
   
-  // draw eyes1
+  // dessine eyes1
   setRegistry(1, eyes1[0]);
   setRegistry(2, eyes1[1]);
   setRegistry(3, eyes1[2]);
@@ -106,7 +105,7 @@ void loop ()
   setRegistry(MAXREG_INTENSITY, 0x0f & INTENSITYMAX);
   delay(5000);
   
-  // draw eyes2
+  // dessine eyes2
   setRegistry(1, eyes2[0]);
   setRegistry(2, eyes2[1]);
   setRegistry(3, eyes2[2]);
@@ -118,7 +117,7 @@ void loop ()
   setRegistry(MAXREG_INTENSITY, 0x0f & INTENSITYMAX);
   delay(50);
   
-    // draw eyes3
+    // dessine eyes3
   setRegistry(1, eyes3[0]);
   setRegistry(2, eyes3[1]);
   setRegistry(3, eyes3[2]);
@@ -130,7 +129,7 @@ void loop ()
   setRegistry(MAXREG_INTENSITY, 0x0f & INTENSITYMAX);
   delay(50);
   
-  // draw eyes4
+  // dessine eyes4
   setRegistry(1, eyes4[0]);
   setRegistry(2, eyes4[1]);
   setRegistry(3, eyes4[2]);
@@ -142,7 +141,7 @@ void loop ()
   setRegistry(MAXREG_INTENSITY, 0x0f & INTENSITYMAX);
   delay(2000);
   
-  // draw eyes3
+  // dessine eyes3
   setRegistry(1, eyes3[0]);
   setRegistry(2, eyes3[1]);
   setRegistry(3, eyes3[2]);
@@ -154,7 +153,7 @@ void loop ()
   setRegistry(MAXREG_INTENSITY, 0x0f & INTENSITYMAX);
   delay(50);
   
-    // draw eyes2
+    // dessine eyes2
   setRegistry(1, eyes2[0]);
   setRegistry(2, eyes2[1]);
   setRegistry(3, eyes2[2]);
@@ -165,22 +164,6 @@ void loop ()
   setRegistry(8, eyes2[7]);
   setRegistry(MAXREG_INTENSITY, 0x0f & INTENSITYMAX);
   delay(50);
-  
-  // second beat
-  //setRegistry(MAXREG_INTENSITY, 0x0f & INTENSITYMAX);
-  //delay(ANIMDELAY);
-  
-  // switch off
- // setRegistry(MAXREG_INTENSITY, 0x0f & INTENSITYMIN);
- // delay(ANIMDELAY);
-  
-  // second beat
- // setRegistry(MAXREG_INTENSITY, 0x0f & INTENSITYMAX);
- // delay(ANIMDELAY);
-  
-  // switch off
-  //setRegistry(MAXREG_INTENSITY, 0x0f & INTENSITYMIN);
-  //delay(ANIMDELAY*6);
 }
 
 
@@ -195,7 +178,7 @@ void setRegistry(byte reg, byte value)
   digitalWrite(CS_PIN, HIGH);
 }
 
-void putByte(byte data)
+void putByte(byte data) // Affiche les images sur les leds
 {
   byte i = 8;
   byte mask;
