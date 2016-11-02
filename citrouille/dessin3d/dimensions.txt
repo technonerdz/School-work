@@ -1,1 +1,2 @@
-31mmx15mmx9mm
+31mmX15mmX9mm
+avec 2mm de marge: 35mmX19mmX13mm
